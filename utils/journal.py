@@ -6,6 +6,7 @@ import time
 import traceback
 from datetime import datetime,timezone
 savedGamePath = environ['USERPROFILE'] + "\Saved Games\Frontier Developments\Elite Dangerous"
+
 @dataclass
 class mission:
     id: int
@@ -16,6 +17,8 @@ class mission:
         return hash(self.id)
     def __eq__(self, __o: object) -> bool:
         return self.id == __o.id
+
+
 @dataclass
 class Journal:
     @dataclass
@@ -50,6 +53,8 @@ class Journal:
     status: str = ''
     signs: set = field(default_factory=set) # unique signs
     missions: set[mission] = field(default_factory=set)
+
+
 journal = Journal()
 # STATUS: normal,undocking,docking,startUndock,startDock,docked,startJump,finishJump,supercruise
 def getNavRoute(routePath=None):

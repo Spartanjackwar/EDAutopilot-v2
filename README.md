@@ -27,6 +27,8 @@ Showcase: [here](https://streamable.com/p8mhoz) (*accelerated, no manual key inp
  7. You can leave the process unsupervised, but you should keep the mouse cursor on the Client Screen and manually takeover when it comes to interdict you
  8. See the [Variables](#variables) for any self-configurable variables
 
+Note that you may need to download a proper verion of pywin32 to get win32gui.  Find it here: https://github.com/mhammond/pywin32/releases
+
 # Tips
  - In order not to get interdicted, you should only choose 'Low-value target' mission, which is displayed in the mission details. The other traits can be ignored cause we are in the 'Outpost' and won't be scanned.
  - Currently I'm annoyed at money-grabbing stuffs (for my Fleet Carrier), so currently this project will only play its role as a simple sightseeing mission bot. Given that I have already created a gameSession API, we can expect more features like multi-hop jumping assist for long distance travel etc. in the future. And if you want, you can fork it to do any modifications you want.

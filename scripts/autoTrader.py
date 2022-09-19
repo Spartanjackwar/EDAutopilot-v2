@@ -9,9 +9,6 @@ class stateMachine(object):
 	pass #filled by later code.
 
 class example(ScriptBase): # class name must be same with filename
-	description ='''
-	example.py: A script example for you to write your own EDAutopilot script
-	'''
 	def __init__(self,logger:Logger=None,layout:QGridLayout=None,session:ScriptSession=None,templates:Image=None): 
 		super().__init__(logger,layout,session,templates)
 		# Initialize scripts and layout here
@@ -73,8 +70,6 @@ class example(ScriptBase): # class name must be same with filename
 
 	
 	def run(self): # Program entrance, you can use infinite loop or anything here
-		session = self.session
-		logger = self.logger
 		align = False
 		
 		elapsedTime = datetime.now()-startTime
@@ -90,8 +85,17 @@ class example(ScriptBase): # class name must be same with filename
 		self.logger.info('clicked')
 	
 	
+	def State_LeaveMassLock(self):
+		if 'FSDMassLocked' in session.stateList:
+			self.session.sendKey('ThrustUp',hold=3)
+			self.session.sendKey('SpeedZero')
+			self.session.sleep(1)
+		else:
+			self.machine.set_state('JumpAlign')
+	
+	
 	#Star avoidance state.
-	def State_SC_Up():
+	def State_SC_Up(self):
 		pitchUpTime = 18
 		speedDelay = 20
 		self.session.sunAvoiding(speedDelay, pitchUpTime)
@@ -99,9 +103,18 @@ class example(ScriptBase): # class name must be same with filename
 	
 	
 	#Destination target state.
-	def State_SC_FindRouteTarget(targetName:str):
-		#TODO:get target
+	def State_SC_FindRouteTarget(self, targetName:str):
+		#TODO: Get target
 		self.machine.set_state('Supercruise-align')
+	
+	
+	#Align to destination.
+	def State_SC_Align(self):
+		if self.session.align():
+			#TODO: Check arrived.
+			self.machine.set_state('Arrival')
+	
+	
 	
 	
 	

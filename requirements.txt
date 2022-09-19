@@ -11,3 +11,4 @@ opencv-python-headless==4.5.5.62
 pyqt5>=5.15
 pyside2>=5.15.2.1
 shiboken2>=5.15.2.1
+pillow>=9.2.0
